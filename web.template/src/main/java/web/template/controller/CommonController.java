@@ -3,6 +3,7 @@ package web.template.controller;
 import bean.template.UserDO;
 import bean.template.UserVO;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -10,10 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller("/common")
 public class CommonController {
-    public ModelAndView login(UserVO userVO){
-        ModelAndView mav=new ModelAndView("index");
-        UserDO userDO=new UserDO();
-        mav.addObject("user",userDO);
+    @RequestMapping(value="/login")
+    public ModelAndView login(){
+        ModelAndView mav=new ModelAndView("login");
         return mav;
     }
 }
