@@ -1,23 +1,35 @@
 package bean.template;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by zhangsx on 2017/6/9.
  */
 public class UserDO implements Serializable{
-    private long userID;
+
+    private long userId;
+
     private String userName;
+
     private String pwdMD5;
+
     private String email;
+
     private String phone;
 
-    public long getUserID() {
-        return userID;
+    private Integer isdelete;
+
+    private Date createTime;
+
+    private Date updateTime;
+
+    public long getUserId() {
+        return userId;
     }
 
-    public void setUserID(long userID) {
-        this.userID = userID;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {
@@ -50,5 +62,29 @@ public class UserDO implements Serializable{
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Integer getIsdelete() {
+        return isdelete;
+    }
+
+    public void setIsdelete(Integer isdelete) {
+        this.isdelete = isdelete;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }
