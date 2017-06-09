@@ -1,0 +1,91 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Hover Data Table</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>Rendering engine</th>
+                        <th>Browser</th>
+                        <th>Platform(s)</th>
+                        <th>Engine version</th>
+                        <th>CSS grade</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Trident</td>
+                        <td>Internet
+                            Explorer 4.0
+                        </td>
+                        <td>Win 95+</td>
+                        <td> 4</td>
+                        <td>X</td>
+                    </tr>
+                    <tr>
+                        <td>Misc</td>
+                        <td>IE Mobile</td>
+                        <td>Windows Mobile 6</td>
+                        <td>-</td>
+                        <td>C</td>
+                    </tr>
+                    <tr>
+                        <td>Misc</td>
+                        <td>PSP browser</td>
+                        <td>PSP</td>
+                        <td>-</td>
+                        <td>C</td>
+                    </tr>
+                    <tr>
+                        <td>Other browsers</td>
+                        <td>All others</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>U</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>Rendering engine</th>
+                        <th>Browser</th>
+                        <th>Platform(s)</th>
+                        <th>Engine version</th>
+                        <th>CSS grade</th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+##            <div class="pull-right hidden-xs">
+                <div id="pagination" class="pagination"><!-- 这里显示分页 --></div>
+
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+</div>
+<script type="text/javascript" src="plugins/paginator/lib/jquery.min.js"></script>
+<link rel="stylesheet" href="plugins/paginator/lib/pagination.css" />
+<script type="text/javascript" src="plugins/paginator/lib/jquery.pagination.js"></script>
+<script type="text/javascript">
+    var jq=$.noConflict();
+    jq(function(){
+        var initPagination = function() {
+            // 创建分页
+            jq("#pagination").pagination(10, {
+                num_edge_entries: 1, //边缘页数
+                num_display_entries: 4, //主体页数
+                callback: pageselectCallback,
+                items_per_page:1 //每页显示1项
+            });
+        }();
+        function pageselectCallback(page_index, jq){
+//            alert(page_index);
+        }
+    });
+</script>

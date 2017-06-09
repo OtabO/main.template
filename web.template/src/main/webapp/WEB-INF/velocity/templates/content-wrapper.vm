@@ -1,0 +1,12 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    #parse("templates/content-header.vm")
+    <!-- Main content -->
+    <section class="content">
+##        #parse("templates/content-row3.vm")
+##        #parse("templates/content-row2.vm")
+        #parse("templates/content-table.vm")
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
