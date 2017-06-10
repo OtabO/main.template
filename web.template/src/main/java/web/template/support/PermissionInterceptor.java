@@ -1,4 +1,4 @@
-package web.template.controller;
+package web.template.support;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +13,7 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
         HttpSession session=request.getSession();
         Object user=session.getAttribute("user");
         if(user==null){
-            request.getRequestDispatcher("/common/login").forward(request, response);
+            response.sendRedirect("/htm/login.htm");
             return false;
         }
         return true;

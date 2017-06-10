@@ -1,4 +1,4 @@
-package web.template.controller;
+package web.template.support;
 
 import bean.template.exception.NonUserException;
 import bean.template.exception.PasswdException;
@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,9 +24,15 @@ public class HandlerExceptionResolverImpl implements HandlerExceptionResolver {
         }else if(ex instanceof PermissionException) {
             return new ModelAndView("", model);
         } else if(ex instanceof PasswdException){
-            return new ModelAndView("login", model);
+            try {
+                response.sendRedirect("/htm/login.htm");
+
+            } catch (IOException e) {
+
+            }
         } else{
             return new ModelAndView("error500", model);
         }
+        return null;
     }
 }

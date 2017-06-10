@@ -34,5 +34,9 @@
             <groupId>com.zsx</groupId>
             <artifactId>util.template</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.zsx</groupId>
+            <artifactId>bean.template</artifactId>
+        </dependency>
     </dependencies>
 </project>
