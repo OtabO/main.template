@@ -1,5 +1,6 @@
 package web.template.support;
 
+import bean.template.constant.TemplateConstant;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -33,7 +34,7 @@ public class PermissionFilter extends OncePerRequestFilter {
 
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         HttpSession session=request.getSession();
-        Object user=session.getAttribute("user");
+        Object user=session.getAttribute(TemplateConstant.SESSION_USER_KEY);
         if(user==null){
             response.sendRedirect("/htm/login.htm");
             return;
