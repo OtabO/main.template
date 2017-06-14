@@ -1,11 +1,11 @@
 package web.template.controller;
+import bean.template.BlackUserDO;
 import bean.template.UserDO;
 import bean.template.UserVO;
 import bean.template.constant.TemplateConstant;
 import bean.template.exception.NonUserException;
 import bean.template.exception.PasswdException;
 import bo.template.PermissionBO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +13,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by zhangsx on 2017/6/9.
@@ -25,11 +26,14 @@ public class CommonController {
 
     private HttpSession httpSession;
 
+//    private BlackUserDAO blackUserDAO;
+
     @RequestMapping(value="/login.do",method = RequestMethod.POST)
     public ModelAndView login(UserVO userVO) throws PasswdException, NonUserException {
         UserDO userDO=permissionBO.login(userVO);
         httpSession.setAttribute(TemplateConstant.SESSION_USER_KEY,userDO);
         ModelAndView mav=new ModelAndView("index");
+//        List<BlackUserDO> blackUserDOList=blackUserDAO.findAll();
         return mav;
     }
 
@@ -46,4 +50,8 @@ public class CommonController {
     public void setHttpSession(HttpSession httpSession) {
         this.httpSession = httpSession;
     }
+
+//    public void setBlackUserDAO(BlackUserDAO blackUserDAO) {
+//        this.blackUserDAO = blackUserDAO;
+//    }
 }

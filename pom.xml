@@ -33,6 +33,45 @@
             <version>2.5</version>
             <scope>compile</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>1.10.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.2.4.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.1.0.Final</version>
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<artifactId>jta</artifactId>-->
+                    <!--<groupId>javax.transaction</groupId>-->
+                <!--</exclusion>-->
+                <!--&lt;!&ndash; Exclude SLF4j to avoid version conflicts (we have 1.6.6, this drags-->
+                <!--in 1.6.1) &ndash;&gt;-->
+                <!--<exclusion>-->
+                    <!--<groupId>org.slf4j</groupId>-->
+                    <!--<artifactId>slf4j-api</artifactId>-->
+                <!--</exclusion>-->
+                <!--&lt;!&ndash; Exclude dom4j to avoid version conflicts (we have 1.6, this drags-->
+                <!--in 1.6.1) &ndash;&gt;-->
+                <!--<exclusion>-->
+                    <!--<groupId>dom4j</groupId>-->
+                    <!--<artifactId>dom4j</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        </dependency>
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -98,6 +137,70 @@
                 <artifactId>util.template</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
+            <!-- mysql连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.0.2</version>
+            </dependency>
+
+            <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa &ndash;&gt;-->
+            <!--<dependency>-->
+            <!--<groupId>org.springframework.data</groupId>-->
+            <!--<artifactId>spring-data-jpa</artifactId>-->
+            <!--<version>1.11.1.RELEASE</version>-->
+            <!--</dependency>-->
+            <!--&lt;!&ndash; https://mvnrepository.com/artifact/javax.persistence/persistence-api &ndash;&gt;-->
+            <!--<dependency>-->
+            <!--<groupId>javax.persistence</groupId>-->
+            <!--<artifactId>persistence-api</artifactId>-->
+            <!--<version>1.0.2</version>-->
+            <!--</dependency>-->
+            <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.hibernate/hibernate-core &ndash;&gt;-->
+            <!--<dependency>-->
+            <!--<groupId>org.hibernate</groupId>-->
+            <!--<artifactId>hibernate-core</artifactId>-->
+            <!--<version>4.3.8.Final</version>-->
+            <!--<exclusions>-->
+            <!--<exclusion>-->
+            <!--<artifactId>jta</artifactId>-->
+            <!--<groupId>javax.transaction</groupId>-->
+            <!--</exclusion>-->
+            <!--&lt;!&ndash; Exclude SLF4j to avoid version conflicts (we have 1.6.6, this drags-->
+            <!--in 1.6.1) &ndash;&gt;-->
+            <!--<exclusion>-->
+            <!--<groupId>org.slf4j</groupId>-->
+            <!--<artifactId>slf4j-api</artifactId>-->
+            <!--</exclusion>-->
+            <!--&lt;!&ndash; Exclude dom4j to avoid version conflicts (we have 1.6, this drags-->
+            <!--in 1.6.1) &ndash;&gt;-->
+            <!--<exclusion>-->
+            <!--<groupId>dom4j</groupId>-->
+            <!--<artifactId>dom4j</artifactId>-->
+            <!--</exclusion>-->
+            <!--</exclusions>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+            <!--<groupId>org.hibernate</groupId>-->
+            <!--<artifactId>hibernate-entitymanager</artifactId>-->
+            <!--<version>4.3.8.Final</version>-->
+            <!--</dependency>-->
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
 </project>
