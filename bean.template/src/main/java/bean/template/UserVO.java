@@ -7,23 +7,23 @@ import java.io.Serializable;
  */
 public class UserVO implements Serializable {
 
-    private String userNameOrEmailOrPhoneNo;
+    private String userName;
 
-    private String passwd;
+    private String pwdMD5;
 
-    public String getUserNameOrEmailOrPhoneNo() {
-        return userNameOrEmailOrPhoneNo;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUserNameOrEmailOrPhoneNo(String userNameOrEmailOrPhoneNo) {
-        this.userNameOrEmailOrPhoneNo = userNameOrEmailOrPhoneNo;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getPasswd() {
-        return passwd;
+    public String getPwdMD5() {
+        return pwdMD5;
     }
 
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
+    public void setPwdMD5(String pwdMD5) {
+        this.pwdMD5 = pwdMD5;
     }
 }

@@ -38,5 +38,9 @@
             <groupId>com.zsx</groupId>
             <artifactId>bean.template</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.zsx</groupId>
+            <artifactId>dao.template</artifactId>
+        </dependency>
     </dependencies>
 </project>

@@ -1,34 +1,47 @@
 package bean.template;
-
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by zhangsx on 2017/6/9.
  */
+@Entity
+@Table(name="user")
 public class UserDO implements Serializable{
 
-    private long userId;
+    @Id
+    private Integer userId;
 
+    @Column(name = "userName")
     private String userName;
 
+    @Column(name = "pwdMD5")
     private String pwdMD5;
 
+    @Column(name = "email")
     private String email;
 
+    @Column(name = "phone")
     private String phone;
 
+    @Column(name = "isdelete")
     private Integer isdelete;
 
+    @Column(name = "createTime")
     private Date createTime;
 
+    @Column(name = "updateTime")
     private Date updateTime;
 
-    public long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
