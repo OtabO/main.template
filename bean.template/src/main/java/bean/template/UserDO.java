@@ -16,6 +16,9 @@ public class UserDO implements Serializable{
     @Id
     private Integer userId;
 
+    @Column(name = "roleId")
+    private Integer roleId;
+
     @Column(name = "userName")
     private String userName;
 
@@ -43,6 +46,14 @@ public class UserDO implements Serializable{
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
     public String getUserName() {

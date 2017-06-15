@@ -1,20 +1,26 @@
 package bean.template;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by zhangsx on 2017/6/9.
  */
+@Entity
+@Table(name="role_permission")
 public class RolePermissionDO implements Serializable {
 
+    @Id
     private Integer rolePermissionId;
 
     private Integer roleId;
 
     private Integer moduleId;
 
-    private Integer flag;
+    private String flag;
 
     private Integer isdelete;
 
@@ -46,11 +52,11 @@ public class RolePermissionDO implements Serializable {
         this.moduleId = moduleId;
     }
 
-    public Integer getFlag() {
+    public String getFlag() {
         return flag;
     }
 
-    public void setFlag(Integer flag) {
+    public void setFlag(String flag) {
         this.flag = flag;
     }
 

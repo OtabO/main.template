@@ -49,6 +49,18 @@ public class CommonController {
         return mav;
     }
 
+    @RequestMapping(value = "/error404.do")
+    public ModelAndView error404() {
+        ModelAndView mav = new ModelAndView("error404");
+        return mav;
+    }
+
+    @RequestMapping(value = "/nonprivileged.do")
+    public ModelAndView nonprivileged() {
+        ModelAndView mav = new ModelAndView("nonprivileged");
+        return mav;
+    }
+
     public void setPermissionBO(PermissionBO permissionBO) {
         this.permissionBO = permissionBO;
     }

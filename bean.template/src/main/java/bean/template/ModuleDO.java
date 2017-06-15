@@ -1,5 +1,8 @@
 package bean.template;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -7,8 +10,11 @@ import java.util.Date;
  * Created by zhangsx on 2017/6/9.
  * 模块
  */
+@Entity
+@Table(name="module")
 public class ModuleDO implements Serializable {
 
+    @Id
     private Integer moduleId;
 
     private String moduleName;

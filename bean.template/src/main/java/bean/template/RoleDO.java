@@ -1,13 +1,19 @@
 package bean.template;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by zhangsx on 2017/6/9.
  */
+@Entity
+@Table(name="role")
 public class RoleDO implements Serializable {
 
+    @Id
     private Integer roleId;
 
     private String roleName;
