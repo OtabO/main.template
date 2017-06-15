@@ -16,10 +16,16 @@ public class PermissionBOImpl implements PermissionBO {
     private UserDAO userDAO;
 
     public UserDO login(UserVO userVO) throws PasswdException, NonUserException {
-        UserDO userDO = new UserDO();
-        userDO.setUserName(userVO.getUserName());
-        userDO.setPwdMD5(userVO.getPwdMD5());
-        return  userDAO.findOne(Example.of(userDO));
+
+        UserDO loginUser=userDAO.findByUserName(userVO.getUserName());
+        if(loginUser==null){
+            throw new NonUserException();
+        }
+        UserDO permissionUser=userDAO.findByUserNameAndPwdMD5(userVO.getUserName(),userVO.getPwdMD5());
+        if(permissionUser==null){
+            throw new PasswdException();
+        }
+        return loginUser;
     }
 
     public void setUserDAO(UserDAO userDAO) {
