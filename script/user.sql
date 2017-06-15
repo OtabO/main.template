@@ -32,6 +32,7 @@ CREATE TABLE `user` (
   `email` varchar(45) DEFAULT '',
   `phone` varchar(13) DEFAULT '',
   `isdelete` int(1) NOT NULL DEFAULT '0',
+  `roleId` int(11) DEFAULT null,
   `createTime` datetime DEFAULT NULL,
   `updateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`userId`)
