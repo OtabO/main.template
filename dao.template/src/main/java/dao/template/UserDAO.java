@@ -8,4 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface UserDAO extends JpaRepository<UserDO, Integer> {
     UserDO findByUserNameAndIsdelete(String userName,Integer isdelete);
     UserDO findByUserNameAndPwdMD5AndIsdelete(String userName,String pwdMD5,Integer isdelete);
+    UserDO findByUserName(String userName);
 }

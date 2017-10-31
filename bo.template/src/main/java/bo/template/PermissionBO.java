@@ -12,6 +12,7 @@ import java.util.List;
  * Created by zhangsx on 2017/6/9.
  */
 public interface PermissionBO {
+
     UserDO login(UserVO userVO) throws PasswdException ,NonUserException;
 
     RoleDO findRole(UserDO userDO);
@@ -19,4 +20,5 @@ public interface PermissionBO {
     List<ModuleDO> findValidModules(UserDO userDO);
 
     boolean validateModule(UserDO userDO,String url);
+
 }

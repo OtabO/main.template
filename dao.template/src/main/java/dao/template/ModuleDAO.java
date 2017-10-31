@@ -9,4 +9,5 @@ import java.util.List;
  * Created by zhangsx on 2017/6/15.
  */
 public interface ModuleDAO extends JpaRepository<ModuleDO, Integer> {
+
 }

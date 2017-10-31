@@ -80,7 +80,18 @@
 <div class="wrapper">
     #parse("templates/header.vm")
     #parse("templates/sidebar.vm")
-    #parse("templates/content-wrapper.vm")
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        #parse("templates/content-header.vm")
+        <!-- Main content -->
+        <section class="content">
+            <p>欢迎使用</p>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
     #parse("templates/footer.vm")
     #parse("templates/control-sidebar.vm")
     <!-- Add the sidebar's background. This div must be placed

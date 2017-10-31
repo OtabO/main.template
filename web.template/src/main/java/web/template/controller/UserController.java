@@ -2,6 +2,7 @@ package web.template.controller;
 
 import bean.template.SearchDO;
 import bean.template.UserDO;
+import bean.template.UserRoleVO;
 import dao.template.UserDAO;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
