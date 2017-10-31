@@ -81,5 +81,4 @@
     </bean>
 
     <bean class="web.template.support.HandlerExceptionResolverImpl"/>
-
 </beans>

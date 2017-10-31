@@ -5,20 +5,21 @@
             <div class="box-header with-border">
                 <h3 class="box-title">搜索框</h3>
             </div>
-            <form role="form" action="/user/list.do">
+            <form id="form" role="form" action="/user/list.do" onsubmit="return validate_empty_form(this)">
                 <div class="box-body">
                     <div class="row">
                         <div class="col-xs-3">
-                            <input name="searchData.userName" class="form-control" placeholder="用户名" type="text">
+                            <input id="userName" name="userName" class="form-control searchQ" placeholder="用户名" type="text">
                         </div>
                         <div class="col-xs-3">
-                            <input name="searchData.email" class="form-control" placeholder="邮箱" type="text">
+                            <input id="email" name="email" class="form-control searchQ" placeholder="邮箱" type="text">
                         </div>
                         <div class="col-xs-3">
-                            <input name="searchData.phone" class="form-control" placeholder="手机号" type="text">
+                            <input id="phone" name="phone" class="form-control searchQ" placeholder="手机号" type="text">
                         </div>
                         <div class="col-xs-3">
-                            <select name="searchData.isdelete" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                            <select name="isdelete" class="form-control select2 select2-hidden-accessible searchQ"
+                                    style="width: 100%;" tabindex="-1" aria-hidden="true">
                                 <option selected="selected" value="0">有效</option>
                                 <option value="1">失效</option>
                             </select>
@@ -48,6 +49,7 @@
                     <thead>
                     <tr>
                         <th hidden="hidden">用户id</th>
+                        <th hidden="hidden">角色id</th>
                         <th>用户名</th>
                         <th>密码md5</th>
                         <th>邮箱</th>
@@ -58,16 +60,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td hidden="hidden">1</td>
-                        <td>admin</td>
-                        <td>asjai</td>
-                        <td>zhangsx@126.com</td>
-                        <td>1361924568</td>
-                        <td>0</td>
-                        <td>2017-06-15 00:00:00</td>
-                        <td>2017-06-15 00:00:00</td>
-                    </tr>
+                        #foreach( $elem in $page.getContent())
+                        <tr>
+                            <td hidden="hidden">$!{elem.getUserId()}</td>
+                            <td hidden="hidden">$!{elem.getRoleId()}</td>
+                            <td>$!{elem.getUserName()}</td>
+                            <td>$!{elem.getPwdMD5()}</td>
+                            <td>$!{elem.getEmail()}</td>
+                            <td>$!{elem.getPhone()}</td>
+                            <td>$!{elem.getIsdelete()}</td>
+                            <td>$!{elem.getCreateTime()}</td>
+                            <td>$!{elem.getUpdateTime()}</td>
+                        </tr>
+                        #end
                     </tbody>
                 </table>
             </div>
@@ -83,12 +88,33 @@
 <script type="text/javascript" src="/plugins/paginator/lib/jquery.min.js"></script>
 <link rel="stylesheet" href="/plugins/paginator/lib/pagination.css"/>
 <script type="text/javascript" src="/plugins/paginator/lib/jquery.pagination.js"></script>
+##<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+##<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+##<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
 <script type="text/javascript">
     var jq = $.noConflict();
     jq(function () {
+        var totalEles = 0;
+        var totalPages = 0;
+        var number = 0;
+
+        #if ($page.getTotalElements())
+            totalEles=$page.getTotalElements();
+        #end
+
+        #if ($page.getTotalPages())
+            totalPages=$page.getTotalPages();
+        #end
+
+        #if ($page.getNumber())
+            totalEles=$page.getNumber();
+        #end
+
         var initPagination = function () {
             // 创建分页
-            jq("#pagination").pagination(10, {
+            jq("#pagination").pagination(totalEles, {
+                items_per_page:totalPages,
+                current_page:number,
                 num_edge_entries: 1, //边缘页数
                 num_display_entries: 4, //主体页数
                 callback: pageselectCallback,
@@ -100,4 +126,15 @@
 //            alert(page_index);
         }
     });
+
+    function validate_empty_form(thisform) {
+        with (thisform) {
+            jq(".searchQ").each(function () {
+                if (jq(this).val() == '') {
+                    jq(this).removeAttr("name");
+                }
+            })
+            return true;
+        }
+    }
 </script>

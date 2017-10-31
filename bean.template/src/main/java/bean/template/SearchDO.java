@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class SearchDO<T> implements Serializable {
     private Integer page;
     private Integer size;
-    private T searchData;
+    private UserDO searchData;
     private Order order;
 
     public Integer getPage() {
@@ -27,11 +27,11 @@ public class SearchDO<T> implements Serializable {
         this.size = size;
     }
 
-    public T getSearchData() {
+    public UserDO getSearchData() {
         return searchData;
     }
 
-    public void setSearchData(T searchData) {
+    public void setSearchData(UserDO searchData) {
         this.searchData = searchData;
     }
 

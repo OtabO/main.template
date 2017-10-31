@@ -8,8 +8,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * Created by zhangsx on 2017/6/15.
@@ -21,20 +25,10 @@ public class UserController {
     private UserDAO userDAO;
 
     @RequestMapping(value = "/list.do")
-    public ModelAndView list(SearchDO<UserDO> search) {
-        if(search.getSearchData()==null){
-            search.setSearchData(new UserDO());
-        }
-        if(search.getPage()==null){
-            search.setPage(1);
-        }
-        if(search.getSize()==null){
-            search.setSize(20);
-        }
-        UserDO searchData=search.getSearchData();
-        Page<UserDO> page=userDAO.findAll(Example.of(searchData),new PageRequest(search.getPage(),search.getSize()));
+    public ModelAndView list(UserDO searchData) {
+        Page<UserDO> pageResult=userDAO.findAll(Example.of(searchData),new PageRequest(0,20));
         ModelAndView mav = new ModelAndView("user");
-        mav.addObject("page",page);
+        mav.addObject("page",pageResult);
         mav.addObject("search");
         return mav;
     }
