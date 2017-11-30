@@ -17,8 +17,14 @@ public class SuffixExpression {
      */
     private String infixExpression;
 
+    /**
+     * 分类过的中缀表达式
+     */
     private List sortedChain;
 
+    /**
+     * 可计算的后缀表达式
+     */
     private List infixExpressionChain;
 
     public SuffixExpression(String infixExpression) {
@@ -47,6 +53,10 @@ public class SuffixExpression {
         doBuild();
     }
 
+    /**
+     * 计算后缀表达式
+     * @return
+     */
     public Object calculate(){
         if(infixExpressionChain==null||infixExpressionChain.size()==0){
             throw new IllegalArgumentException("中缀表达式不能为空");
@@ -84,6 +94,9 @@ public class SuffixExpression {
         return tmp.pop();
     }
 
+    /**
+     * 将中缀表达式字符串格式化
+     */
     public void sort() {
         sortedChain = new Sorter().sort(this.infixExpression);
     }
@@ -171,7 +184,6 @@ public class SuffixExpression {
                 if (end > start) {
                     String operandsStr = origin.substring(start + 1, end);
                     if (operandsStr.trim().length() > 0) {
-//                        System.out.println(operandsStr);
                         Operands operands = new DoubleOperands(operandsStr);
                         chain.add(operands);
                     }
@@ -179,7 +191,6 @@ public class SuffixExpression {
                 if (i != indexList.size()) {
                     String operatorStr = String.valueOf(origin.charAt(indexList.get(i)));
                     if (operatorStr.trim().length() > 0) {
-//                        System.out.println(operatorStr);
                         Operator operator = new Operator(operatorStr);
                         chain.add(operator);
                     }
@@ -264,6 +275,7 @@ public class SuffixExpression {
                 throw new IllegalArgumentException("非法的操作符");
             }
             this.opStr = opStr.trim();
+            //因为操作符的优先级都是成对的，所以除2
             this.priority = opSet.indexOf(this.opStr)/2;
         }
 
