@@ -371,7 +371,7 @@ public class WebappClassLoader
     /**
      * Has this component been started?
      */
-    protected boolean started = false;
+    protected boolean started = true;
 
 
     /**

@@ -758,9 +758,9 @@ public class FileDirContext extends BaseDirContext {
                 return null;
 
             // Check to see if going outside of the web application root
-            if (!canPath.startsWith(absoluteBase)) {
-                return null;
-            }
+//            if (!canPath.startsWith(absoluteBase)) {
+//                return null;
+//            }
 
             // Case sensitivity check - this is now always done
             String fileAbsPath = file.getAbsolutePath();
@@ -768,19 +768,19 @@ public class FileDirContext extends BaseDirContext {
                 fileAbsPath = fileAbsPath + "/";
             String absPath = normalize(fileAbsPath);
             canPath = normalize(canPath);
-            if ((absoluteBase.length() < absPath.length())
-                && (absoluteBase.length() < canPath.length())) {
-                absPath = absPath.substring(absoluteBase.length() + 1);
-                if (absPath == null)
-                    return null;
-                if (absPath.equals(""))
-                    absPath = "/";
-                canPath = canPath.substring(absoluteBase.length() + 1);
-                if (canPath.equals(""))
-                    canPath = "/";
-                if (!canPath.equals(absPath))
-                    return null;
-            }
+//            if ((absoluteBase.length() < absPath.length())
+//                && (absoluteBase.length() < canPath.length())) {
+//                absPath = absPath.substring(absoluteBase.length() + 1);
+//                if (absPath == null)
+//                    return null;
+//                if (absPath.equals(""))
+//                    absPath = "/";
+//                canPath = canPath.substring(absoluteBase.length() + 1);
+//                if (canPath.equals(""))
+//                    canPath = "/";
+//                if (!canPath.equals(absPath))
+//                    return null;
+//            }
 
         } else {
             return null;
