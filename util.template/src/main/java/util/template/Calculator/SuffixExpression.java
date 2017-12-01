@@ -50,7 +50,7 @@ public class SuffixExpression {
     public void build() throws IllegalArgumentException {
         check();
         sort();
-        doBuild();
+        doBuild0();
     }
 
     /**
@@ -151,6 +151,66 @@ public class SuffixExpression {
             tmp.add(stack.pop());
         }
 
+        infixExpressionChain=tmp;
+    }
+
+    /**
+     * 中缀表达式转化为后缀表达式步骤
+     * 1、遇到操作数：直接输出（添加到后缀表达式中）
+     * 2、栈为空时，遇到运算符，直接入栈
+     * 3、遇到左括号：将其入栈
+     * 4、遇到右括号：执行出栈操作，并将出栈的元素输出，直到弹出栈的是左括号，左括号不输出。
+     * 5、遇到其他运算符：加减乘除：弹出所有优先级大于或者等于该运算符的栈顶元素，然后将该运算符入栈（遇到左括号停止出栈）
+     * 6、最终将栈中的元素依次出栈，输出。
+     */
+    private void doBuild0(){
+        if (sortedChain == null||sortedChain.size()==0)
+            throw new IllegalArgumentException("中缀表达式中间结果集不能为空");
+        List tmp = new ArrayList();
+        Stack<Operator> stack = new Stack<>();
+        for (int i = 0; i < sortedChain.size(); i++) {
+            if(sortedChain.get(i) instanceof Operands){
+                tmp.add(sortedChain.get(i));
+            }else{
+                Operator currentOp=(Operator) sortedChain.get(i);
+                if(stack.empty()){
+                    stack.push(currentOp);
+                }else{
+                    if(currentOp.equals(Operator.BRACKETS_LEFT)){
+                        stack.push(currentOp);
+                    }else if(currentOp.equals(Operator.BRACKETS_RIGHT)){
+                        for(;;){
+                            if(stack.empty()){
+                                throw new IllegalArgumentException("后缀表达式结构错误");
+                            }
+                            Operator topOp=stack.pop();
+                            if(topOp.equals(Operator.BRACKETS_LEFT)){
+                                break;
+                            }
+                            tmp.add(topOp);
+                        }
+                    }else{
+                        for(;;){
+                            if(stack.empty()){
+                                stack.push(currentOp);
+                                break;
+                            }
+                            Operator topOp=stack.peek();
+                            if(topOp.compareTo(currentOp)>=0 && !topOp.equals(Operator.BRACKETS_LEFT)){
+                                tmp.add(stack.pop());
+                            }else{
+                                stack.push(currentOp);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        int size=stack.size();
+        for(int i=0;i<size;i++){
+            tmp.add(stack.pop());
+        }
         infixExpressionChain=tmp;
     }
 
@@ -279,6 +339,14 @@ public class SuffixExpression {
             this.priority = opSet.indexOf(this.opStr)/2;
         }
 
+        public String getOpStr() {
+            return opStr;
+        }
+
+        public int getPriority() {
+            return priority;
+        }
+
         @Override
         public int compareTo(Object o) {
             return this.priority-((Operator) o).getPriority() ;
@@ -294,12 +362,12 @@ public class SuffixExpression {
             return opStr.equals(anObject);
         }
 
-        public String getOpStr() {
-            return opStr;
-        }
-
-        public int getPriority() {
-            return priority;
+        @Override
+        public String toString() {
+            return "Operator{" +
+                    "opStr='" + opStr + '\'' +
+                    ", priority=" + priority +
+                    '}';
         }
     }
 
@@ -307,10 +375,10 @@ public class SuffixExpression {
     public static void main(String[] args) {
         String ori = "0-(( 4 * 6 + ( 2 + 7 ) / 3)) +1.1  ";
         String ori1 = "1*2*2/2+(1-1)/4";
-        String ori2 = "0-1 ";
-        String ori3 = "1";
+        String ori2 = "1 ";
+        String ori3 = "1 + 2* 3 + (4 * 5 + 6) * 7";
 //
-        SuffixExpression suffixExpression=new SuffixExpression(ori3);
+        SuffixExpression suffixExpression=new SuffixExpression(ori1);
         suffixExpression.build();
         System.out.println(suffixExpression.calculate());
 
